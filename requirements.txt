@@ -1,0 +1,4 @@
+python-amazon-sp-api[orders]
+fastapi
+uvicorn[standard]
+python-dotenv
