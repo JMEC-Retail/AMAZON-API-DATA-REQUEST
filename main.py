@@ -5,6 +5,7 @@ from typing import List, Optional, Dict, Any
 
 from fastapi import FastAPI, Query, HTTPException
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
@@ -59,6 +60,13 @@ sp_client = SPAPIClient(sp_config)
 #orders_api = OrdersV0Api(sp_client.api_client)
 
 app = FastAPI(title="Amazon SP-API Orders for AU", version="1.0.0")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/__routes")
 def __routes():
